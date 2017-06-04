@@ -1,0 +1,58 @@
+﻿@using ISEN.DotNet.Library;
+@{
+    ViewData["Title"] = "Voyages";
+}
+@model IEnumerable<Voyage>
+
+<div class="row">
+    <div class="col-md-12">
+      <h1>Voyages <small>Liste</small></h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+      <table class="table table-striped">
+          <thead>
+              <tr>
+                <th>Id</th>
+                <th>StartPlace</th>
+                <th>EndPlace</th>
+                <th>StartTime
+                    <a asp-controller="Voyage" asp-action="VoyageurDateSortDown" class="glyphicon glyphicon-collapse-down" aria-hidden="true" />
+                    <a asp-controller="Voyage" asp-action="VoyageurDateSortUp" class="glyphicon glyphicon-collapse-up" aria-hidden="true" />
+                </th>
+                <th>Seats</th>
+                <th>Comment</th>
+                <th>Driver</th>
+                <th> </th>
+              </tr>
+          </thead>
+          <tbody>
+          @foreach(var voyage in Model)
+          {
+            <tr>
+                <td>@voyage.Id</td>
+                <td>@voyage.StartPlace</td>
+                <td>@voyage.EndPlace</td>
+                <td>@voyage.StartTime.ToString("dd/MM/yyyy à HH:mm")</td>
+                <td>@voyage.RemainingSeat/@voyage.Seat</td>
+                <td>@voyage.Comment</td>
+                <td>@voyage.Driver?.FirstName @voyage.Driver?.LastName</td>
+                <td>
+                    <a asp-controller="Booking" asp-action="Detail" asp-route-id="@voyage.Id">
+                      Book
+                    </a>
+                    <a asp-controller="Voyage" asp-action="Delete" asp-route-id="@voyage.Id">Delete...</a>
+                </td>
+            </tr>
+          }
+          </tbody>
+      </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <a asp-controller="Voyage" asp-action="Detail" class="btn btn-default">Add...</a>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+﻿@using ISEN.DotNet.Library;
+@using ISEN.DotNet.Library.Repositories.Interfaces;
+@{
+    ViewData["Title"] = "Voyages";
+}
+@inject IDriverRepository _driverRepository;
+@model Voyage
+
+<div class="row">
+    <div class="col-md-12">
+        <h1>Voyages <small>Search</small></h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <form class="form-horizontal" asp-action="SearchVoyage">
+            <div>
+                <label asp-for="StartPlace" class="control-label">StartPlace</label>
+                <textarea class="form-control"
+                          id="StartPlace"
+                          asp-for="StartPlace"></textarea>
+            </div>
+            <div>
+                <label asp-for="EndPlace" class="control-label">EndPlace</label>
+                <textarea class="form-control"
+                          id="EndPlace"
+                          asp-for="EndPlace"></textarea>
+            </div>
+
+            <div>
+                <label asp-for="StartTime" class="control-label">StartTime</label>
+                <input type="date" class="form-control"
+                       id="StartTime" placeholder="StartTime"
+                       asp-for="StartTime">
+            </div>
+
+            <hr />
+            <input type="submit" class="btn btn-primary" value="Search" />
+            <a asp-controller="Voyage" asp-action="Index" class="btn btn-default">Cancel</a>
+
+        </form>
+    </div>
+</div>

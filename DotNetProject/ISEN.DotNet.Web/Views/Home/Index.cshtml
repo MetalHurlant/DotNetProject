@@ -1,0 +1,27 @@
+﻿@using ISEN.DotNet.Library;
+@using ISEN.DotNet.Library.Repositories.Interfaces;
+@{
+    ViewData["Title"] = "Home";
+}
+@inject IPassengerRepository _passengerRepository;
+@inject IPersonRepository _personRepository;
+@model Person
+
+<div class="row">
+    <div class="col-md-12">
+        <h1>Home <small>/home</small></h1>
+        <h3>Chose who you are</h3>
+        <h1>id :@ViewData["UserId"]</h1>
+        <form  class="form-horizontal" asp-controller="Home" asp-action="SetUser">
+            <div>
+                <label asp-for="Id" class="control-label">Who Are you?</label>
+                @Html.DropDownListFor(
+                    m => m.Id, 
+                    new SelectList(
+                        _personRepository.GetAll(),
+                        "Id",
+                        "Display"))
+            <input type="submit" class="btn btn-primary" value="This is me" />
+        </form>
+    </div>
+</div>

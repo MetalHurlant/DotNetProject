@@ -1,0 +1,45 @@
+@using ISEN.DotNet.Library;
+@using ISEN.DotNet.Library.Repositories.Interfaces;
+@{
+    ViewData["Title"] = "Booking";
+}
+@inject IPassengerRepository _passengerRepository;
+@model Booking
+
+<div class="row">
+    <div class="col-md-12">
+      <h1>Booking <small>Detail</small></h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <form  class="form-horizontal" asp-action="Detail">
+            <input type="hidden" asp-for="Id" value="@Model?.Id" />
+            <input type="hidden" asp-for="VoyageId" value="@Model?.VoyageId" />
+            <div>
+                <label asp-for="Comment" class="control-label">Comment</label>
+                <textarea class="form-control" 
+                    id="Comment" 
+                    asp-for="Comment"></textarea>
+            </div>
+
+            <div>
+                <label  class="control-label">Vous êtes</label>
+                @Html.DropDownListFor(
+                    m => m.PassengerId, 
+                    new SelectList(
+                        _passengerRepository.GetAll(),
+                        "Id",
+                        "Display"),
+                    new { @class = "form-control" })
+              
+            </div>
+
+            <hr />
+            <input type="submit" class="btn btn-primary" value="Book" />
+            <a asp-controller="Booking" asp-action="Index" class="btn btn-default">Cancel</a>
+
+        </form>
+    </div>
+</div>

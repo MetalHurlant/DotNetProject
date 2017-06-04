@@ -1,0 +1,59 @@
+﻿@using ISEN.DotNet.Library;
+@using ISEN.DotNet.Library.Repositories.Interfaces;
+@{
+    ViewData["Title"] = "Voyage";
+}
+@inject ICityRepository _cityRepository;
+@model Voyage
+
+<div class="row">
+    <div class="col-md-12">
+      <h1>Voyage <small>Detail</small></h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <form  class="form-horizontal" asp-action="Detail">
+            <div>
+                <label asp-for="StartPlace" class="control-label">StartPlace</label>
+                <textarea class="form-control" 
+                    id="StartPlace" 
+                    asp-for="StartPlace"></textarea>
+            </div>
+            <div>
+                <label asp-for="EndPlace" class="control-label">EndPlace</label>
+                <textarea class="form-control" 
+                    id="EndPlace" 
+                    asp-for="EndPlace"></textarea>
+            </div>
+
+            <div>
+                <label asp-for="StartTime" class="control-label">StartTime</label>
+                <input type="text" class="form-control" 
+                    id="StartTime" placeholder="StartTime"
+                    asp-for="StartTime">
+            </div>
+
+            <div>
+                <label asp-for="Seat" class="control-label">Seats</label>
+                <input type="number" class="form-control" 
+                    id="Seat" placeholder="Seat"
+                    asp-for="Seat"
+                    value="4" />
+            </div>
+
+            <div>
+                <label asp-for="Comment" class="control-label">Comment</label>
+                <textarea class="form-control" 
+                    id="Comment" 
+                    asp-for="Comment"></textarea>
+            </div>
+
+            <hr />
+            <input type="submit" class="btn btn-primary" value="Save" />
+            <a asp-controller="Voyage" asp-action="Index" class="btn btn-default">Cancel</a>
+
+        </form>
+    </div>
+</div>

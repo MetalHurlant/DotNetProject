@@ -1,0 +1,45 @@
+@using ISEN.DotNet.Library;
+@{
+    ViewData["Title"] = "Voyageurs";
+}
+@model IEnumerable<Passenger>
+
+<div class="row">
+    <div class="col-md-12">
+      <h1>Voyageurs <small>Liste</small></h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+      <table class="table table-striped">
+          <thead>
+              <tr>
+                <th>Id</th>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th> </th>
+              </tr>
+          </thead>
+          <tbody>
+          @foreach(var Passenger in Model)
+          {
+            <tr>
+                <td>@Passenger.Id</td>
+                <td>@Passenger.FirstName</td>
+                <td>@Passenger.LastName</td>
+                <td>
+                    <a asp-controller="Passenger" asp-action="Detail" asp-route-id="@Passenger.Id">More...</a>
+                    <a asp-controller="Passenger" asp-action="Delete" asp-route-id="@Passenger.Id">Delete...</a>
+                </td>
+            </tr>
+          }
+          </tbody>
+      </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <a asp-controller="Passenger" asp-action="Detail" class="btn btn-default">Add...</a>
+    </div>
+</div>

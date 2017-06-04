@@ -1,0 +1,40 @@
+﻿@using ISEN.DotNet.Library;
+@using ISEN.DotNet.Library.Repositories.Interfaces;
+@{
+    ViewData["Title"] = "Personnes";
+}
+@model Person
+
+<div class="row">
+    <div class="col-md-12">
+      <h1>Personnes <small>Detail</small></h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <form  class="form-horizontal" asp-action="Detail">
+            <input type="hidden" asp-for="Id" value="@Model?.Id" />
+            <div>
+                <label asp-for="FirstName" class="control-label">First name</label>
+                <input type="text" class="form-control" 
+                    id="FirstName" placeholder="Last name"
+                    asp-for="FirstName"
+                    value="@Model?.FirstName" />
+            </div>
+
+            <div>
+                <label asp-for="LastName" class="control-label">Last name</label>
+                <input type="text" class="form-control" 
+                    id="LastName" placeholder="Last name"
+                    asp-for="LastName"
+                    value="@Model?.LastName" />
+            </div>
+
+            <hr />
+            <input type="submit" class="btn btn-primary" value="Save" />
+            <a asp-controller="Person" asp-action="Index" class="btn btn-default">Cancel</a>
+
+        </form>
+    </div>
+</div>
